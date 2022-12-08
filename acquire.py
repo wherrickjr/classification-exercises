@@ -52,17 +52,13 @@ def prep_iris(df):
 
 def prep_titanic(df):
     df = df.drop_duplicates()
+
     df = df.dropna()
     df.drop(columns = ['Unnamed: 0', 'passenger_id'\
         , 'survived', 'pclass', 'sibsp', 'parch', 'alone', 'embarked'],\
              inplace = True)
-    dummy_df = pd.get_dummies(df[['sex']], dummy_na=False, drop_first=[True])
-    df = pd.concat([df, dummy_df], axis=1)
-    dummy_df = pd.get_dummies(df[['class']], dummy_na=False, drop_first=[True])
-    df = pd.concat([df, dummy_df], axis=1)
-    dummy_df = pd.get_dummies(df[['deck']], dummy_na=False, drop_first=[True])
-    df = pd.concat([df, dummy_df], axis=1)
-    dummy_df = pd.get_dummies(df[['embark_town']], dummy_na=False, drop_first=[True])
+    list_of_columns = ['sex', 'class', 'deck', 'embark_town']
+    dummy_df = pd.get_dummies(df[list_of_columns], dummy_na=False, drop_first=[True])
     df = pd.concat([df, dummy_df], axis=1)
     return df
 
