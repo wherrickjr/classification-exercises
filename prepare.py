@@ -62,3 +62,14 @@ def train_validate_test_split(df, col):
     train, validate = train_test_split(train,test_size=.3,random_state=123, \
         stratify= col)
     return train, validate, test
+
+def print_cm_metrics(cm):
+    tn, fp, fn, tp = cm.ravel()
+    accuracy = (tp + tn) / (tn + fp + fn + tp)
+    print(f"Accuracy: {accuracy}")
+
+    true_positive_rate = tp/(tp +fn)
+    print(f"True Positive Rate: {true_positive_rate}")
+
+    false_positive_rate = fp/(fp + tn)
+
