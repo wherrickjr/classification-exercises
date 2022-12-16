@@ -72,4 +72,18 @@ def print_cm_metrics(cm):
     print(f"True Positive Rate: {true_positive_rate}")
 
     false_positive_rate = fp/(fp + tn)
+    print(f"False Positive Rate: {false_positive_rate}")
+
+    true_negative_rate = tn/(fp+ tn)
+    print(f"True Negative Rate: {true_negative_rate }")
+
+    false_negative_rate = fn/(tp+ fn)
+    print(f"False Negative Rate: {false_negative_rate }")
+
+    precision = tp/(tp +fp)
+    print(f"Precision: {precision}")
+
+    recall = tp/ (tp + fn)
+    print(f"Recall: {recall}")
+
 
