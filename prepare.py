@@ -17,7 +17,7 @@ def prep_titanic(df):
 
     df = df.dropna()
     df.drop(columns = ['Unnamed: 0', 'passenger_id'\
-        , 'survived', 'pclass', 'sibsp', 'parch', 'alone', 'embarked'],\
+        , 'pclass', 'sibsp', 'parch', 'alone', 'embarked'],\
              inplace = True)
     list_of_columns = ['sex', 'class', 'deck', 'embark_town']
     dummy_df = pd.get_dummies(df[list_of_columns], dummy_na=False, drop_first=[True])
@@ -43,19 +43,22 @@ def iris_split(df):
     train, test = train_test_split(df,test_size=.1,random_state=123, stratify=df.species)
     train, validate = train_test_split(train,test_size=.3,random_state=123, \
         stratify=train.species)
+    return train, validate, test
 
 def titanic_split(df):
-    train, test = train_test_split(df,test_size=.1,random_state=123, stratify=df.embark_town)
+    train, test = train_test_split(df,test_size=.1,random_state=123, stratify=df.survived)
     train, validate = train_test_split(train,test_size=.3,random_state=123, \
-        stratify=train.embark_town)
+        stratify=train.survived)
+    return train, validate, test
 
 def telco_split(df):
     train, test = train_test_split(df,test_size=.1,random_state=123, stratify=df.churn)
     train, validate = train_test_split(train,test_size=.3,random_state=123, \
         stratify=train.churn)
+    return train, validate, test
 
 def train_validate_test_split(df, col):
     train, test = train_test_split(df,test_size=.1,random_state=123, stratify= col)
     train, validate = train_test_split(train,test_size=.3,random_state=123, \
         stratify= col)
- 
+    return train, validate, test
