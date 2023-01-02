@@ -1,6 +1,6 @@
 import pandas as pd
 import os
-import env
+import env.py
 from sklearn.model_selection import train_test_split
 
 def get_connection(db, user=env.username, host=env.host, password=env.password):
