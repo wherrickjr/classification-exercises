@@ -85,5 +85,3 @@ def print_cm_metrics(cm):
 
     recall = tp/ (tp + fn)
     print(f"Recall: {recall}")
-
-
